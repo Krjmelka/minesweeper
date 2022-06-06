@@ -1,0 +1,26 @@
+.field {
+    &-cell {
+      fill: rgb(84, 173, 0);
+      cursor: pointer;
+
+      &.visible {
+        fill: rgb(168, 168, 168);
+        cursor: default;
+
+        &.is-odd {
+            fill: rgb(214, 214, 214);
+        }
+      }
+    
+      &:not(.visible).is-odd {
+        fill: rgb(118, 240, 4);
+      }
+      &:hover:not(.visible) {
+        fill: rgb(167, 253, 87);
+      }
+    }
+
+    &-text {
+        user-select: none;
+    }
+}

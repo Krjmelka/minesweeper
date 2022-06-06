@@ -1,0 +1,15 @@
+.controls {
+    padding-top: 10px;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+    &__flags,
+    &__time {
+        font-size: 35px;
+    }
+    &-icon {
+
+    }
+}

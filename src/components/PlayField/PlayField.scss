@@ -1,0 +1,9 @@
+.play-field {
+    width: 100%;
+  &-svg {
+    background-color: grey;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
