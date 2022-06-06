@@ -7,6 +7,8 @@ import {
   EGameType,
   TFieldCell,
   TFieldData,
+  TLeaderboard,
+  TLeaderboardData,
   TPosition,
 } from "../types";
 
@@ -76,6 +78,24 @@ class Game {
         isError: true,
       });
     });
+  }
+
+  getLocalResultData(type: 'name' | 'leaderboard') {
+    if(type === 'leaderboard') {
+      const storageData = localStorage.getItem('leaderboard')
+      return storageData ? JSON.parse(storageData) as TLeaderboard : []
+    } else {
+      return localStorage.getItem('userName')
+    }
+  }
+
+  setLocalResultData(resultData: Pick<TLeaderboardData, 'mode' | 'name' | 'time'>) {
+    const previousData = this.getLocalResultData('leaderboard') as TLeaderboard;
+    localStorage.setItem('leaderboard', JSON.stringify([...previousData, {
+      ...resultData,
+      date: new Date(),
+    }]))
+    localStorage.setItem('userName', resultData.name ? resultData.name : '')
   }
 
   private updateCell(cellPosition: TPosition, newData: TFieldCell) {

@@ -9,7 +9,9 @@
     &__time {
         font-size: 35px;
     }
-    &-icon {
-
+    &-leaderboard {
+        margin-right: 10px;
+        cursor: pointer;
+        user-select: none;
     }
 }

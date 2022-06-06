@@ -1,0 +1,25 @@
+.leaderboard__list {
+  margin: 0;
+  padding-left: 10px;
+  width: 250px;
+
+  &-item {
+    width: 100%;
+    display: flex;
+
+    &-name {
+      width: 30%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &-date {
+      width: 40%;
+      text-align: center;
+    }
+    &-time {
+      width: 30%;
+      text-align: end;
+    }
+  }
+}

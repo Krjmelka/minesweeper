@@ -28,6 +28,12 @@ const increaseTimeSpend: CaseReducer<TGameSlice> = (
 ) => {
   state.timeSpend += 1;
 };
+const setShowLeaderBoard: CaseReducer<TGameSlice, PayloadAction<boolean>> = (
+  state,
+  action
+) => {
+  state.showLeaderBoard = action.payload;
+};
 
 export const gameSlice = createSlice({
   name: "game",
@@ -36,12 +42,14 @@ export const gameSlice = createSlice({
     flags: 0,
     gameData: [] as TFieldData,
     timeSpend: 0,
+    showLeaderBoard: false,
   },
   reducers: {
     setMode,
     setFlags,
     setGameData,
     increaseTimeSpend,
+    setShowLeaderBoard,
   },
 });
 

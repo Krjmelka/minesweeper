@@ -15,6 +15,7 @@ export const selectGameMode = (state: TRootState) => state.game.mode;
 export const selectPlayFieldData = (state: TRootState) => state.game.gameData;
 export const selectFlags = (state: TRootState) => state.game.flags;
 export const selectTimeSpend = (state: TRootState) => state.game.timeSpend;
+export const selectIsShowLeaderBoard = (state: TRootState) => state.game.showLeaderBoard;
 
 export const selectPlayFieldViewBoxSize = createSelector(
   selectGameMode,

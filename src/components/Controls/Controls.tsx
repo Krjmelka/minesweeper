@@ -49,6 +49,14 @@ export const Controls = () => {
         <span>{flagsLeft}</span>
       </div>
       <div className="controls__time">
+        <span
+          className="controls-leaderboard"
+          onClick={() => {
+            dispatch(actions.setShowLeaderBoard(true));
+          }}
+        >
+          🧾
+        </span>
         <span className="controls-icon">🕒</span>
         <span>{timeSpend}</span>
       </div>
