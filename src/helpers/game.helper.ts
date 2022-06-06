@@ -24,12 +24,16 @@ class Game {
     this.dispatch = dispatch;
     this.generateMines();
     this.generateField();
-    dispatch( actions.setMode(type) )
+    dispatch(actions.setMode(type));
   }
 
   openCell(cellData: TFieldCell) {
     if (cellData.number === 0) {
-      this.updateCell(cellData.position, {...cellData, userVisible: true});
+      this.updateCell(cellData.position, {
+        ...cellData,
+        type: this.getCellType(cellData.position),
+        userVisible: true,
+      });
       const nearestCells = this.getNearestCells(cellData.position);
       const nearestCellsData = nearestCells
         .reduce<TFieldData>((acc, curr) => {
@@ -41,7 +45,11 @@ class Game {
         this.openCell(item);
       });
     } else {
-      this.updateCell(cellData.position, {...cellData, userVisible: true});
+      this.updateCell(cellData.position, {
+        ...cellData,
+        type: this.getCellType(cellData.position),
+        userVisible: true,
+      });
     }
   }
 
@@ -52,6 +60,21 @@ class Game {
         cellData.type === ECellType.FLAGGED
           ? this.getCellType(cellData.position)
           : ECellType.FLAGGED,
+    });
+  }
+
+  showErrorsResult() {
+    const errorCells = this.playFieldData.filter((cell) => {
+      return (
+        (cell.type === ECellType.FLAGGED && cell.number !== undefined) ||
+        (cell.type === ECellType.MINED && cell.userVisible)
+      );
+    });
+    errorCells.forEach((cell) => {
+      this.updateCell(cell.position, {
+        ...cell,
+        isError: true,
+      });
     });
   }
 

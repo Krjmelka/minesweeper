@@ -31,6 +31,7 @@ export type TFieldCell = {
     type: ECellType;
     userVisible: boolean;
     number?: number;
+    isError?: boolean;
 }
 
 export type TFieldData = TFieldCell[]

@@ -4,17 +4,24 @@ import "./App.css";
 import {Controls} from "./components/Controls/Controls";
 import {PlayField} from "./components/PlayField/PlayField";
 import {Popup} from "./components/Popup/Popup";
-import {selectGameMode} from "./features/game/selectors";
+import {selectGameMode, selectIsGameOver} from "./features/game/selectors";
 import gameHelper from "./helpers/game.helper";
 
 function App() {
   const dispatch = useDispatch();
   const mode = useSelector(selectGameMode);
+  const isGameOver = useSelector(selectIsGameOver);
 
   useEffect(() => {
     gameHelper.initializeGame(mode, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
+
+  useEffect(() => {
+    if(isGameOver){
+      gameHelper.showErrorsResult()
+    }
+  }, [isGameOver])
 
   return (
     <div className="app-wrapper">

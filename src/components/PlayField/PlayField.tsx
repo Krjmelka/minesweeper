@@ -25,10 +25,7 @@ export const PlayField = () => {
 
   const dispatch = useDispatch();
 
-  console.log('heeeeeeeeeeeeeeeeeeeeeeeeee')
-
   const handleGameStart = () => {
-      console.log('heeeee')
     const timer = setInterval(() => {
       dispatch(actions.increaseTimeSpend());
     }, 1000);
@@ -37,7 +34,6 @@ export const PlayField = () => {
 
   useEffect(() => {
     if (timer) {
-        console.log('heeee')
       clearInterval(timer);
       setTimer(null);
     }
@@ -54,11 +50,11 @@ export const PlayField = () => {
   }, [timer]);
 
   useEffect(() => {
-    if((isGameOver || isWin) && timer) {
-        clearInterval(timer)
-        setTimer(null)
+    if ((isGameOver || isWin) && timer) {
+      clearInterval(timer);
+      setTimer(null);
     }
-  }, [isGameOver, timer, isWin])
+  }, [isGameOver, timer, isWin]);
 
   if (!fieldData.length) {
     return null;
@@ -84,14 +80,14 @@ export const PlayField = () => {
             onContextMenu={(event) => {
               event.preventDefault();
               if (isGameOver || isWin) {
-                  return
+                return;
               }
               if (!cell.userVisible) {
                 gameHelper.flagCell(cell);
               }
               if (!timer) {
                 handleGameStart();
-              } 
+              }
             }}
             {...cell}
           />
